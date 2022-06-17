@@ -9,7 +9,6 @@ namespace EdHouseHW
     {
         private const string File = "input.txt";
 
-        public static Driver[] Drivers = new Driver[2];
 
         static void Main(string[] args)
         {
@@ -47,14 +46,12 @@ namespace EdHouseHW
 
                     string[] directions;
                     directions = sr.ReadLine()?.Split(',');
-                    Drivers[0] = new Driver(new Track(directions), lunchInterval);
+                    Driver One = new Driver(new Track(directions), lunchInterval);
                     directions = sr.ReadLine()?.Split(',');
-                    Drivers[1] = new Driver(new Track(directions), lunchInterval);
-
-                    foreach (var driv in Drivers)
-                    {
-                        driv.PrintDriver();
-                    }
+                    Driver Two = new Driver(new Track(directions), lunchInterval);
+                    
+                    One.PrintDriver();
+                    Two.PrintDriver();
 
                 }
             }
