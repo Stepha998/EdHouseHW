@@ -9,7 +9,7 @@ namespace EdHouseHW
     {
         private const string File = "input.txt";
 
-        public static List<Driver> Drivers = new();
+        public static Driver[] Drivers = new Driver[2];
 
         static void Main(string[] args)
         {
@@ -45,15 +45,11 @@ namespace EdHouseHW
                         ErrorMsg("lunch brake interval specified incorrectly");
                     }
 
-                    // get trackList info of the individual drivers
-                    while (!sr.EndOfStream)
-                    {
-                        // get trackList and validate it
-                        string[] directions = sr.ReadLine()?.Split(',');
-
-                        Drivers.Add(new Driver(new Track(directions), lunchInterval));
-
-                    }
+                    string[] directions;
+                    directions = sr.ReadLine()?.Split(',');
+                    Drivers[0] = new Driver(new Track(directions), lunchInterval);
+                    directions = sr.ReadLine()?.Split(',');
+                    Drivers[1] = new Driver(new Track(directions), lunchInterval);
 
                     foreach (var driv in Drivers)
                     {
