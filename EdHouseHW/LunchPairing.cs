@@ -10,18 +10,12 @@ namespace EdHouseHW
 {
     internal class LunchPairing
     {
-        private string file;
         private Driver driverOne;
         private Driver driverTwo;
-        private int[] lunchInterval;
+        private int[] lunchInterval = new int[2];
         public Point lunchCords { get; private set; }
 
-        public LunchPairing(string file)
-        {
-            this.file = file;
-            lunchInterval = new int[2];
-        }
-        public LunchPairing() { }
+        public LunchPairing(){}
 
         private bool PairDrivers() 
         {
@@ -38,7 +32,7 @@ namespace EdHouseHW
         }
 
 
-        private bool ReadFileInput()
+        private bool ReadInput(string file)
         {
             try
             {
@@ -84,16 +78,55 @@ namespace EdHouseHW
             }
         }
 
-
-        public bool FindLunchCords()
+        private bool ReadInput()
         {
-            if (!ReadFileInput() || !PairDrivers())
+            // get lunch interval
+            string[] firstLine = Console.ReadLine().Split('-');
+            if (firstLine == null || firstLine.Length != 2 || !int.TryParse(firstLine[0], out lunchInterval[0]) || !int.TryParse(firstLine[1], out lunchInterval[1]))
+            {
+                Program.ErrorMsg("lunch break interval specified incorrectly");
+                return false;
+            }
+
+            string[] directionsOne = Console.ReadLine().Split(',');
+            Track trackOne = new Track();
+            string[] directionsTwo = Console.ReadLine().Split(',');
+            Track trackTwo = new Track();
+            if (!trackTwo.CreateTrack(directionsOne) || !trackOne.CreateTrack(directionsTwo))
+            {
+                return false;
+            }
+
+            driverOne = new Driver(trackOne, lunchInterval);
+            driverTwo = new Driver(trackTwo, lunchInterval);
+
+            if (!driverOne.CreateLunchTrack() || !driverTwo.CreateLunchTrack())
+            {
+                return false;
+            }
+
+
+            return true;
+        }
+
+
+        public bool FindLunchCords(string file)
+        {
+            if (!ReadInput(file) || !PairDrivers())
             {
                 return false;
             }
 
             return true;
         }
+        public bool FindLunchCords()
+        {
+            if (!ReadInput() || !PairDrivers())
+            {
+                return false;
+            }
 
+            return true;
+        }
     }
 }

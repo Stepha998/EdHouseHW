@@ -9,7 +9,7 @@ namespace EdHouseHW
         public List<Point> TrackList { get; private set; }
         public Track()
         {
-            TrackList = new List<Point>(){new Point(0,0)};
+            TrackList = new List<Point>(){new(0,0)};
         }
 
         public bool CreateTrack(string[] directions)
