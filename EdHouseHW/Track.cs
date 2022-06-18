@@ -7,11 +7,11 @@ namespace EdHouseHW
     internal class Track
     {
         public List<Point> TrackList { get; }
-
+        private string[] directions;
         public Track(string[] directions)
         {
             TrackList = new List<Point>(){new Point(0,0)};
-            CreateTrack(directions);
+            this.directions = directions;
         }
 
         public Track(Track track, int firstIndex, int lastIndex)
@@ -23,25 +23,31 @@ namespace EdHouseHW
             this.TrackList = track.TrackList.GetRange(firstIndex, (lastIndex - firstIndex + 1 > track.TrackList.Count ? track.TrackList.Count : lastIndex - firstIndex + 1));
         }
 
-        private void CreateTrack(string[] directions)
+        public bool CreateTrack()
         {
             for (int i = 0; i < directions.Length; i++)
             {
-                ValidateDirection(directions[i]);
-                CreateDirection(directions[i]);
+                if (!ValidateDirection(directions[i]) || !CreateDirection(directions[i]))
+                {
+                    return false;
+                }
             }
+
+            return true;
         }
 
-        private void ValidateDirection(string direction)
+        private bool ValidateDirection(string direction)
         {
             if (!char.IsLetter(direction[^1]) ||
                 !int.TryParse(direction.Substring(0, direction.Length - 1), out _))
             {
                 Program.ErrorMsg("directions incorrect");
+                return false;
             }
+            return true;
         }
 
-        private void CreateDirection(string direction)
+        private bool CreateDirection(string direction)
         {
             char cardDirection = direction[^1];
             int numDirection = int.Parse(direction.Substring(0, direction.Length - 1));
@@ -78,8 +84,10 @@ namespace EdHouseHW
 
                 default:
                     Program.ErrorMsg("direction incorrect");
-                    break;
+                    return false;
             }
+
+            return true;
         }
     }
 }
