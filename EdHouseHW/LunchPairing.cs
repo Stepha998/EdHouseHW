@@ -13,18 +13,28 @@ namespace EdHouseHW
         private string file;
         private Driver driverOne;
         private Driver driverTwo;
+        private int[] lunchInterval;
         public Point lunchCords { get; private set; }
 
         public LunchPairing(string file)
         {
             this.file = file;
+            lunchInterval = new int[2];
         }
         public LunchPairing() { }
 
         private bool PairDrivers() 
         {
-            lunchCords = new Point(0, 0);
-            return true;
+            for (int i = 0; i < driverOne.lunchTrack.TrackList.Count; i++)
+            {
+                if (driverOne.lunchTrack.TrackList[i] == driverTwo.lunchTrack.TrackList[i])
+                {
+                    lunchCords = driverOne.lunchTrack.TrackList[i];
+                    return true;
+                }
+            }
+            Program.ErrorMsg("could not find a place for lunch");
+            return false;
         }
 
 
@@ -37,7 +47,6 @@ namespace EdHouseHW
                 {
                     // get lunch interval
                     string[] firstLine = sr.ReadLine()?.Split('-');
-                    int[] lunchInterval = new int[2];
                     if (firstLine == null || firstLine.Length != 2 || !int.TryParse(firstLine[0], out lunchInterval[0]) || !int.TryParse(firstLine[1], out lunchInterval[1]))
                     {
                         Program.ErrorMsg("lunch break interval specified incorrectly");
@@ -61,8 +70,6 @@ namespace EdHouseHW
                         return false;
                     }
 
-                    driverOne.PrintDriver();
-                    driverTwo.PrintDriver();
 
                     return true;
                 }
@@ -82,7 +89,6 @@ namespace EdHouseHW
         {
             if (!ReadFileInput() || !PairDrivers())
             {
-                Program.ErrorMsg("could not find a place for lunch");
                 return false;
             }
 

@@ -19,10 +19,6 @@ namespace EdHouseHW
                 {
                     Console.WriteLine(lunchPairing.lunchCords);
                 }
-                else
-                {
-                    return;
-                }
             }
             else if (args.Length > 0)
             {
