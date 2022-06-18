@@ -19,14 +19,6 @@ namespace EdHouseHW
             this.lunchTrack = new Track();
         }
         
-        public void PrintDriver()
-        {
-            string x = track.TrackList[0] + ", " + track.TrackList[^1];
-            
-            string z = lunchTrack.TrackList[0] + ", " + lunchTrack.TrackList[^1];
-
-            Console.WriteLine($"{x}, {z}, lunch brake: {lunchInterval[0]} {lunchInterval[1]}");
-        }
 
         public bool CreateLunchTrack()
         {
