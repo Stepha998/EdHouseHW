@@ -14,7 +14,8 @@ namespace EdHouseHW
             // choose where to find input
             if (System.IO.File.Exists(File))
             {
-                FileInput();
+                LunchPairing lunchPairing = ReadFileInput(File);
+
             }
             else if (args.Length > 0)
             {
@@ -24,49 +25,48 @@ namespace EdHouseHW
             {
                 Console.WriteLine("keyboard");
             }
-
-            Console.ReadKey();
         }
 
-        private static void FileInput()
+        private static LunchPairing ReadFileInput(string file)
         {
             try
             {
                 // open file with input
-                using (StreamReader sr = new StreamReader(File, Encoding.UTF8))
+                using (StreamReader sr = new StreamReader(file, Encoding.UTF8))
                 {
                     // get lunch interval
                     string[] firstLine = sr.ReadLine()?.Split('-');
                     int[] lunchInterval = new int[2];
                     if (firstLine == null || firstLine.Length != 2 || !int.TryParse(firstLine[0], out lunchInterval[0]) || !int.TryParse(firstLine[1], out lunchInterval[1]))
                     {
-                        ErrorMsg("lunch brake interval specified incorrectly");
+                        Program.ErrorMsg("lunch brake interval specified incorrectly");
                     }
 
                     string[] directions;
                     directions = sr.ReadLine()?.Split(',');
-                    Driver One = new Driver(new Track(directions), lunchInterval);
+                    Driver one = new Driver(new Track(directions), lunchInterval);
                     directions = sr.ReadLine()?.Split(',');
-                    Driver Two = new Driver(new Track(directions), lunchInterval);
-                    
-                    One.PrintDriver();
-                    Two.PrintDriver();
+                    Driver two = new Driver(new Track(directions), lunchInterval);
 
+                    one.PrintDriver();
+                    two.PrintDriver();
+
+                    return new LunchPairing(one, two);
                 }
             }
             catch (FileLoadException)
             {
-                ErrorMsg("file could not be loaded");
+                throw new FileLoadException("file could not be loaded");
             }
             catch (DirectoryNotFoundException)
             {
-                ErrorMsg("file could not be loaded");
+                throw new DirectoryNotFoundException("file could not be loaded");
             }
         }
 
         public static void ErrorMsg(string err)
         {
-            throw new Exception($"ERROR: {err}");
+            Console.WriteLine($"ERROR: {err}");
         }
 
         
