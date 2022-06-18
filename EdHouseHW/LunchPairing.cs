@@ -13,7 +13,7 @@ namespace EdHouseHW
         private string file;
         private Driver driverOne;
         private Driver driverTwo;
-        private Point lunchCords;
+        public Point lunchCords { get; private set; }
 
         public LunchPairing(string file)
         {
@@ -21,9 +21,10 @@ namespace EdHouseHW
         }
         public LunchPairing() { }
 
-        private Point PairDrivers()
+        private bool PairDrivers()
         {
-            return new Point(0, 0);
+            lunchCords = new Point(0, 0);
+            return true;
         }
 
 
@@ -39,21 +40,26 @@ namespace EdHouseHW
                     int[] lunchInterval = new int[2];
                     if (firstLine == null || firstLine.Length != 2 || !int.TryParse(firstLine[0], out lunchInterval[0]) || !int.TryParse(firstLine[1], out lunchInterval[1]))
                     {
-                        Program.ErrorMsg("lunch brake interval specified incorrectly");
+                        Program.ErrorMsg("lunch break interval specified incorrectly");
+                        return false;
                     }
 
-                    string[] directions;
-                    directions = sr.ReadLine()?.Split(',');
-                    Track trackOne = new Track(directions);
-                    directions = sr.ReadLine()?.Split(',');
-                    Track trackTwo = new Track(directions);
-                    if (!trackTwo.CreateTrack() || !trackOne.CreateTrack())
+                    string[] directionsOne = sr.ReadLine()?.Split(',');
+                    Track trackOne = new Track();
+                    string[] directionsTwo = sr.ReadLine()?.Split(',');
+                    Track trackTwo = new Track();
+                    if (!trackTwo.CreateTrack(directionsOne) || !trackOne.CreateTrack(directionsTwo))
                     {
                         return false;
                     }
 
                     driverOne = new Driver(trackOne, lunchInterval);
                     driverTwo = new Driver(trackTwo, lunchInterval);
+
+                    if (!driverOne.CreateLunchTrack() || !driverTwo.CreateLunchTrack())
+                    {
+                        return false;
+                    }
 
                     driverOne.PrintDriver();
                     driverTwo.PrintDriver();
@@ -71,6 +77,17 @@ namespace EdHouseHW
             }
         }
 
+
+        public bool FindLunchCords()
+        {
+            if (!ReadFileInput() || !PairDrivers())
+            {
+                Program.ErrorMsg("could not find a place for lunch");
+                return false;
+            }
+
+            return true;
+        }
 
     }
 }

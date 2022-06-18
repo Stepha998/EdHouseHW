@@ -6,24 +6,13 @@ namespace EdHouseHW
 {
     internal class Track
     {
-        public List<Point> TrackList { get; }
-        private string[] directions;
-        public Track(string[] directions)
+        public List<Point> TrackList { get; private set; }
+        public Track()
         {
             TrackList = new List<Point>(){new Point(0,0)};
-            this.directions = directions;
         }
 
-        public Track(Track track, int firstIndex, int lastIndex)
-        {
-            if (firstIndex > track.TrackList.Count)
-            {
-                Program.ErrorMsg("driver finishes work before lunch break");
-            }
-            this.TrackList = track.TrackList.GetRange(firstIndex, (lastIndex - firstIndex + 1 > track.TrackList.Count ? track.TrackList.Count : lastIndex - firstIndex + 1));
-        }
-
-        public bool CreateTrack()
+        public bool CreateTrack(string[] directions)
         {
             for (int i = 0; i < directions.Length; i++)
             {
@@ -33,6 +22,17 @@ namespace EdHouseHW
                 }
             }
 
+            return true;
+        }
+
+        public bool CreateLunchTrack(Track track, int firstIndex, int lastIndex)
+        {
+            if (firstIndex > track.TrackList.Count)
+            {
+                Program.ErrorMsg("driver finishes work before lunch break");
+                return false;
+            }
+            TrackList = track.TrackList.GetRange(firstIndex, (lastIndex - firstIndex + 1 > track.TrackList.Count ? track.TrackList.Count : lastIndex - firstIndex + 1));
             return true;
         }
 

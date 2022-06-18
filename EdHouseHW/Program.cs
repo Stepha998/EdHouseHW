@@ -17,11 +17,11 @@ namespace EdHouseHW
                 LunchPairing lunchPairing = new LunchPairing(File);
                 if (lunchPairing.FindLunchCords())
                 {
-                    Console.WriteLine(lunchPairing.getLunchCords());
+                    Console.WriteLine(lunchPairing.lunchCords);
                 }
                 else
                 {
-                    ErrorMsg("could not find a place for lunch");
+                    return;
                 }
             }
             else if (args.Length > 0)
