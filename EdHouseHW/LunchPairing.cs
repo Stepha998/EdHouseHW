@@ -15,7 +15,6 @@ namespace EdHouseHW
         private int[] lunchInterval = new int[2];
         public Point lunchCords { get; private set; }
 
-        public LunchPairing(){}
 
         private bool PairDrivers() 
         {

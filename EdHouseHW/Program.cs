@@ -7,7 +7,7 @@ namespace EdHouseHW
 {
     internal class Program
     {
-        public const string File = "input.txt";
+        public const string File = "x.txt";
 
         static void Main(string[] args)
         {

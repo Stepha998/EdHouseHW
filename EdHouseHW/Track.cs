@@ -4,6 +4,14 @@ using System.Drawing;
 
 namespace EdHouseHW
 {
+    enum WorldSides
+    {
+        N = 'N',
+        S = 'S',
+        E = 'E',
+        W = 'W'
+    }
+
     internal class Track
     {
         public List<Point> TrackList { get; private set; }
@@ -54,28 +62,28 @@ namespace EdHouseHW
             Point lastPoint = TrackList.Last();
             switch (cardDirection)
             {
-                case 'N':
+                case (char)WorldSides.N:
                     for (int j = 1; j <= numDirection; j++)
                     {
                         TrackList.Add(lastPoint with { Y = lastPoint.Y + j });
                     }
                     break;
 
-                case 'S':
+                case (char)WorldSides.S:
                     for (int j = 1; j <= numDirection; j++)
                     {
                         TrackList.Add(lastPoint with { Y = lastPoint.Y - j });
                     }
                     break;
 
-                case 'E':
+                case (char)WorldSides.E:
                     for (int j = 1; j <= numDirection; j++)
                     {
                         TrackList.Add(lastPoint with { X = lastPoint.X + j });
                     }
                     break;
 
-                case 'W':
+                case (char)WorldSides.W:
                     for (int j = 1; j <= numDirection; j++)
                     {
                         TrackList.Add(lastPoint with { X = lastPoint.X - j });
