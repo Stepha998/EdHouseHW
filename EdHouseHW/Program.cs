@@ -5,9 +5,9 @@ using System.Text;
 
 namespace EdHouseHW
 {
-    internal class Program
+    internal static class Program
     {
-        public const string File = "x.txt";
+        private const string File = "input.txt";
 
         static void Main(string[] args)
         {
