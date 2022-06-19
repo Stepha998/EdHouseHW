@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace EdHouseHW
 {
-    enum WorldSides
+    enum CardinalSides
     {
         N = 'N',
         S = 'S',
@@ -62,28 +62,28 @@ namespace EdHouseHW
             Point lastPoint = TrackList.Last();
             switch (cardDirection)
             {
-                case (char)WorldSides.N:
+                case (char)CardinalSides.N:
                     for (int j = 1; j <= numDirection; j++)
                     {
                         TrackList.Add(lastPoint with { Y = lastPoint.Y + j });
                     }
                     break;
 
-                case (char)WorldSides.S:
+                case (char)CardinalSides.S:
                     for (int j = 1; j <= numDirection; j++)
                     {
                         TrackList.Add(lastPoint with { Y = lastPoint.Y - j });
                     }
                     break;
 
-                case (char)WorldSides.E:
+                case (char)CardinalSides.E:
                     for (int j = 1; j <= numDirection; j++)
                     {
                         TrackList.Add(lastPoint with { X = lastPoint.X + j });
                     }
                     break;
 
-                case (char)WorldSides.W:
+                case (char)CardinalSides.W:
                     for (int j = 1; j <= numDirection; j++)
                     {
                         TrackList.Add(lastPoint with { X = lastPoint.X - j });
