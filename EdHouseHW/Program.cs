@@ -12,37 +12,25 @@ namespace EdHouseHW
         static void Main(string[] args)
         {
             // choose where to find input
+            LunchPairing lunch;
             if (System.IO.File.Exists(File))
             {
-                LunchPairing lunchPairing = new LunchPairing();
-                if (lunchPairing.FindLunchCords(File))
-                {
-                    Console.WriteLine(lunchPairing.lunchCords);
-                }
+                lunch = new LunchPairing(File);
+                Console.WriteLine(lunch.lunchSpot);
+                return;
             }
-            else if (args.Length > 0)
+            if (args.Length > 0)
             {
                 if (System.IO.File.Exists(args[0]))
                 {
-                    LunchPairing lunchPairing = new LunchPairing();
-                    if (lunchPairing.FindLunchCords(args[0]))
-                    {
-                        Console.WriteLine(lunchPairing.lunchCords);
-                    }
-                }
-                else
-                {
-                    ErrorMsg("file passed in argument could not be found");
+                    lunch = new LunchPairing(args[0]);
+                    Console.WriteLine(lunch.lunchSpot);
+                    return;
                 }
             }
-            else
-            {
-                LunchPairing lunchPairing = new LunchPairing();
-                if (lunchPairing.FindLunchCords())
-                {
-                    Console.WriteLine(lunchPairing.lunchCords);
-                }
-            }
+
+            lunch = new LunchPairing();
+            Console.WriteLine(lunch.lunchSpot);
         }
 
         

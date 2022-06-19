@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,25 +9,84 @@ namespace EdHouseHW
 {
     internal class Driver
     {
-        public Track track { get; }
-        private int[] lunchInterval;
-        public Track lunchTrack { get; }
-
-        public Driver(Track track, int[] lunchInterval)
+        enum CardinalDirections
         {
-            this.track = track;
-            this.lunchInterval = lunchInterval;
-            this.lunchTrack = new Track();
+            N = 'N',
+            S = 'S',
+            E = 'E',
+            W = 'W'
         }
-        
 
-        public bool CreateLunchTrack()
+        public List<Point> Track { get; private set; }
+
+        public Driver(string[] directions)
         {
-            if (!lunchTrack.CreateLunchTrack(track, lunchInterval[0], lunchInterval[1]))
+            CreateTrack(directions);
+        }
+
+        private void CreateTrack(string[] directions)
+        {
+            Track = new List<Point> {new Point(0, 0)};
+            foreach (var direction in directions)
             {
-                return false;
+                int numDirection = ReadNumDirection(direction);
+                char cardDirection = ReadCardDirection(direction);
+                Track.AddRange(LoadPointsInTheDirection(Track.Last(), numDirection, cardDirection));
             }
-            return true;
+        }
+
+        private List<Point> LoadPointsInTheDirection(Point lastPoint, int numDirection, char cardDirection)
+        {
+            List<Point> points = new List<Point>();
+            switch (cardDirection)
+            {
+                case (char)CardinalDirections.N:
+                    for (int j = 1; j <= numDirection; j++)
+                    {
+                        points.Add(lastPoint with { Y = lastPoint.Y + j });
+                    }
+                    break;
+
+                case (char)CardinalDirections.S:
+                    for (int j = 1; j <= numDirection; j++)
+                    {
+                        points.Add(lastPoint with { Y = lastPoint.Y - j });
+                    }
+                    break;
+
+                case (char)CardinalDirections.E:
+                    for (int j = 1; j <= numDirection; j++)
+                    {
+                        points.Add(lastPoint with { X = lastPoint.X + j });
+                    }
+                    break;
+
+                case (char)CardinalDirections.W:
+                    for (int j = 1; j <= numDirection; j++)
+                    {
+                        points.Add(lastPoint with { X = lastPoint.X - j });
+                    }
+                    break;
+
+                default:
+                    throw new Exception();
+            }
+            return points;
+        }
+
+
+        private char ReadCardDirection(string direction)
+        {
+            return direction[^1];
+        }
+
+        private int ReadNumDirection(string direction)
+        {
+            if (!int.TryParse(direction.Substring(0, direction.Length - 2), out int numDirection) || numDirection < 0)
+            {
+                throw new Exception();
+            }
+            return numDirection;
         }
     }
 }

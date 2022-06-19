@@ -10,122 +10,85 @@ namespace EdHouseHW
 {
     internal class LunchPairing
     {
+        private string[] lunchInterval;
+        private string[] directionsOne;
+        private string[] directionsTwo;
         private Driver driverOne;
         private Driver driverTwo;
-        private int[] lunchInterval = new int[2];
-        public Point lunchCords { get; private set; }
+        public Point lunchSpot { get; private set; }
 
-
-        private bool PairDrivers() 
+        public LunchPairing(string file)
         {
-            for (int i = 0; i < driverOne.lunchTrack.TrackList.Count; i++)
-            {
-                if (driverOne.lunchTrack.TrackList[i] == driverTwo.lunchTrack.TrackList[i])
-                {
-                    lunchCords = driverOne.lunchTrack.TrackList[i];
-                    return true;
-                }
-            }
-            Program.ErrorMsg("could not find a place for lunch");
-            return false;
+            LoadInput(file);
+            PairDrivers();
         }
 
-
-        private bool ReadInput(string file)
+        public LunchPairing()
         {
+            LoadInput();
+            PairDrivers();
+        }
+
+        
+
+        private void PairDrivers()
+        {
+            CreateDrivers();
+            ValidateLunchInterval();
+            FindLunchSpot();
+        }
+
+        private void CreateDrivers()
+        {
+            driverOne = new Driver(directionsOne);
+            driverTwo = new Driver(directionsTwo);
+        }
+
+        private void FindLunchSpot()
+        {
+            int start = int.Parse(lunchInterval[0]);
+            int end = int.Parse(lunchInterval[1]);
+
             try
             {
-                // open file with input
-                using (StreamReader sr = new StreamReader(file, Encoding.UTF8))
+                for (int point = start; point < end; point++)
                 {
-                    // get lunch interval
-                    string[] firstLine = sr.ReadLine()?.Split('-');
-                    if (firstLine == null || firstLine.Length != 2 || !int.TryParse(firstLine[0], out lunchInterval[0]) || !int.TryParse(firstLine[1], out lunchInterval[1]))
+                    if (driverOne.Track[point] == driverTwo.Track[point])
                     {
-                        Program.ErrorMsg("lunch break interval specified incorrectly");
-                        return false;
+                        lunchSpot = driverOne.Track[point];
                     }
-
-                    string[] directionsOne = sr.ReadLine()?.Split(',');
-                    Track trackOne = new Track();
-                    string[] directionsTwo = sr.ReadLine()?.Split(',');
-                    Track trackTwo = new Track();
-                    if (!trackTwo.CreateTrack(directionsOne) || !trackOne.CreateTrack(directionsTwo))
-                    {
-                        return false;
-                    }
-
-                    driverOne = new Driver(trackOne, lunchInterval);
-                    driverTwo = new Driver(trackTwo, lunchInterval);
-
-                    if (!driverOne.CreateLunchTrack() || !driverTwo.CreateLunchTrack())
-                    {
-                        return false;
-                    }
-
-
-                    return true;
                 }
             }
-            catch (FileLoadException)
+            catch (Exception)
             {
-                throw new FileLoadException("file could not be loaded");
-            }
-            catch (DirectoryNotFoundException)
-            {
-                throw new DirectoryNotFoundException("file could not be loaded");
+                Console.WriteLine("Could not find a suitable place for the lunch.");
+                throw;
             }
         }
 
-        private bool ReadInput()
+        private void ValidateLunchInterval()
         {
-            // get lunch interval
-            string[] firstLine = Console.ReadLine().Split('-');
-            if (firstLine == null || firstLine.Length != 2 || !int.TryParse(firstLine[0], out lunchInterval[0]) || !int.TryParse(firstLine[1], out lunchInterval[1]))
+            if (lunchInterval.Length != 2 || !int.TryParse(lunchInterval[0], out _) || !int.TryParse(lunchInterval[1], out _))
             {
-                Program.ErrorMsg("lunch break interval specified incorrectly");
-                return false;
+                throw new Exception();
             }
-
-            string[] directionsOne = Console.ReadLine().Split(',');
-            Track trackOne = new Track();
-            string[] directionsTwo = Console.ReadLine().Split(',');
-            Track trackTwo = new Track();
-            if (!trackTwo.CreateTrack(directionsOne) || !trackOne.CreateTrack(directionsTwo))
-            {
-                return false;
-            }
-
-            driverOne = new Driver(trackOne, lunchInterval);
-            driverTwo = new Driver(trackTwo, lunchInterval);
-
-            if (!driverOne.CreateLunchTrack() || !driverTwo.CreateLunchTrack())
-            {
-                return false;
-            }
-
-
-            return true;
         }
 
-
-        public bool FindLunchCords(string file)
+        private void LoadInput(string file)
         {
-            if (!ReadInput(file) || !PairDrivers())
+            using (StreamReader sr = new StreamReader(file, Encoding.UTF8))
             {
-                return false;
+                lunchInterval = sr.ReadLine()?.Split('-');
+                directionsOne = sr.ReadLine()?.Split(',');
+                directionsTwo = sr.ReadLine()?.Split(',');
             }
-
-            return true;
         }
-        public bool FindLunchCords()
+        private void LoadInput()
         {
-            if (!ReadInput() || !PairDrivers())
-            {
-                return false;
-            }
-
-            return true;
+            lunchInterval = Console.ReadLine()?.Split('-');
+            directionsOne = Console.ReadLine()?.Split(',');
+            directionsTwo = Console.ReadLine()?.Split(',');
         }
+
     }
 }
