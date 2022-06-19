@@ -71,7 +71,7 @@ namespace EdHouseHW
         {
             if (lunchInterval.Length != 2 || !int.TryParse(lunchInterval[0], out _) || !int.TryParse(lunchInterval[1], out _))
             {
-                throw new Exception();
+                throw new InputException("Wrong input in lunch intervals.");
             }
         }
 

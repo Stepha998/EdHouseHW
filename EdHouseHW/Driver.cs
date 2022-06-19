@@ -69,7 +69,7 @@ namespace EdHouseHW
                     break;
 
                 default:
-                    throw new Exception();
+                    throw new InputException("Wrong input in cardinal directions.");
             }
             return points;
         }
@@ -84,7 +84,7 @@ namespace EdHouseHW
         {
             if (!int.TryParse(direction.Substring(0, direction.Length - 1), out int numDirection) || numDirection < 0)
             {
-                throw new Exception();
+                throw new InputException("Wrong input in numeric directions.");
             }
             return numDirection;
         }
