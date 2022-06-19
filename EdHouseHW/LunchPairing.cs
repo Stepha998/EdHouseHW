@@ -11,8 +11,8 @@ namespace EdHouseHW
     internal class LunchPairing
     {
         private string[] lunchInterval;
-        private string[] directionsOne;
-        private string[] directionsTwo;
+        private string[] directionOne;
+        private string[] directionTwo;
         private Driver driverOne;
         private Driver driverTwo;
         public Point lunchSpot { get; private set; }
@@ -29,7 +29,6 @@ namespace EdHouseHW
             PairDrivers();
         }
 
-        
 
         private void PairDrivers()
         {
@@ -40,24 +39,26 @@ namespace EdHouseHW
 
         private void CreateDrivers()
         {
-            driverOne = new Driver(directionsOne);
-            driverTwo = new Driver(directionsTwo);
+            driverOne = new Driver(directionOne);
+            driverTwo = new Driver(directionTwo);
         }
 
         private void FindLunchSpot()
         {
             int start = int.Parse(lunchInterval[0]);
             int end = int.Parse(lunchInterval[1]);
-
+            
             try
             {
-                for (int point = start; point < end; point++)
+                for (int point = start; point <= end; point++)
                 {
                     if (driverOne.Track[point] == driverTwo.Track[point])
                     {
                         lunchSpot = driverOne.Track[point];
+                        return;
                     }
                 }
+                throw new Exception();
             }
             catch (Exception)
             {
@@ -79,15 +80,15 @@ namespace EdHouseHW
             using (StreamReader sr = new StreamReader(file, Encoding.UTF8))
             {
                 lunchInterval = sr.ReadLine()?.Split('-');
-                directionsOne = sr.ReadLine()?.Split(',');
-                directionsTwo = sr.ReadLine()?.Split(',');
+                directionOne = sr.ReadLine()?.Split(',');
+                directionTwo = sr.ReadLine()?.Split(',');
             }
         }
         private void LoadInput()
         {
             lunchInterval = Console.ReadLine()?.Split('-');
-            directionsOne = Console.ReadLine()?.Split(',');
-            directionsTwo = Console.ReadLine()?.Split(',');
+            directionOne = Console.ReadLine()?.Split(',');
+            directionTwo = Console.ReadLine()?.Split(',');
         }
 
     }

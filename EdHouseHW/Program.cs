@@ -19,27 +19,15 @@ namespace EdHouseHW
                 Console.WriteLine(lunch.lunchSpot);
                 return;
             }
-            if (args.Length > 0)
+            if (args.Length > 0 && System.IO.File.Exists(args[0]))
             {
-                if (System.IO.File.Exists(args[0]))
-                {
-                    lunch = new LunchPairing(args[0]);
-                    Console.WriteLine(lunch.lunchSpot);
-                    return;
-                }
+                lunch = new LunchPairing(args[0]);
+                Console.WriteLine(lunch.lunchSpot);
+                return;
             }
 
             lunch = new LunchPairing();
             Console.WriteLine(lunch.lunchSpot);
         }
-
-        
-
-        public static void ErrorMsg(string err)
-        {
-            Console.WriteLine($"ERROR: {err}");
-        }
-
-        
     }
 }
