@@ -17,20 +17,20 @@ namespace EdHouseHW
         private Driver driverTwo;
         public Point lunchSpot { get; private set; }
 
-        public LunchPairing(string file)
+        public LunchPairing(string file) // constructor with input from file
         {
             LoadInput(file);
             PairDrivers();
         }
 
-        public LunchPairing()
+        public LunchPairing() // constructor with input from stdin
         {
             LoadInput();
             PairDrivers();
         }
 
 
-        private void PairDrivers()
+        private void PairDrivers() // creates drivers based on directions from input and tries to find lunch coordinates
         {
             CreateDrivers();
             FindLunchSpot();
@@ -42,7 +42,7 @@ namespace EdHouseHW
             driverTwo = new Driver(directionTwo);
         }
 
-        private void FindLunchSpot()
+        private void FindLunchSpot() // tries to find lunch coordinates, if no correct coordinate found, exception thrown
         {
             ValidateLunchInterval();
             int start = int.Parse(lunchInterval[0]);
@@ -52,7 +52,7 @@ namespace EdHouseHW
             {
                 for (int point = start; point <= end; point++)
                 {
-                    if (driverOne.Track[point] == driverTwo.Track[point])
+                    if (driverOne.Track[point] == driverTwo.Track[point]) // if crossing of the tracks of the drivers found, assign lunchSpot to that point and return
                     {
                         lunchSpot = driverOne.Track[point];
                         return;
@@ -62,12 +62,11 @@ namespace EdHouseHW
             }
             catch (Exception)
             {
-                Console.WriteLine("Could not find a suitable place for the lunch.");
-                throw;
+                throw new NoPlaceForLunchFoundException("Could not find a suitable place for the lunch.");
             }
         }
 
-        private void ValidateLunchInterval()
+        private void ValidateLunchInterval() // checks if given lunch interval from input are 2 numbers, if not, exception thrown
         {
             if (lunchInterval.Length != 2 || !int.TryParse(lunchInterval[0], out _) || !int.TryParse(lunchInterval[1], out _))
             {
@@ -75,7 +74,7 @@ namespace EdHouseHW
             }
         }
 
-        private void LoadInput(string file)
+        private void LoadInput(string file) // loads input from file
         {
             using (StreamReader sr = new StreamReader(file, Encoding.UTF8))
             {
@@ -84,7 +83,7 @@ namespace EdHouseHW
                 directionTwo = sr.ReadLine()?.Split(',');
             }
         }
-        private void LoadInput()
+        private void LoadInput() // loads input from stdin
         {
             lunchInterval = Console.ReadLine()?.Split('-');
             directionOne = Console.ReadLine()?.Split(',');

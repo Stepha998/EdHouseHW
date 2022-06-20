@@ -17,14 +17,14 @@ namespace EdHouseHW
             W = 'W'
         }
 
-        public List<Point> Track { get; private set; }
+        public List<Point> Track { get; private set; } // list of all the points crossed based on the given directions
 
         public Driver(string[] directions)
         {
             CreateTrack(directions);
         }
 
-        private void CreateTrack(string[] directions)
+        private void CreateTrack(string[] directions) // creates the track based on the given directions
         {
             Track = new List<Point> {new Point(0, 0)};
             foreach (var direction in directions)
@@ -35,7 +35,7 @@ namespace EdHouseHW
             }
         }
 
-        private List<Point> LoadPointsInTheDirection(Point lastPoint, int numDirection, char cardDirection)
+        private List<Point> LoadPointsInTheDirection(Point lastPoint, int numDirection, char cardDirection) // takes last point on the track and generates all points in the new directions
         {
             List<Point> points = new List<Point>();
             switch (cardDirection)
@@ -69,18 +69,18 @@ namespace EdHouseHW
                     break;
 
                 default:
-                    throw new InputException("Wrong input in cardinal directions.");
+                    throw new InputException("Wrong input in cardinal directions."); // if cardinal direction incorrect, exception thrown
             }
             return points;
         }
 
 
-        private char ReadCardDirection(string direction)
+        private char ReadCardDirection(string direction) // returns last char of the direction as a cardinal direction
         {
             return direction[^1];
         }
 
-        private int ReadNumDirection(string direction)
+        private int ReadNumDirection(string direction) // returns a numerical direction, if the direction is incorrect, exception thrown
         {
             if (direction.Length < 1 || !int.TryParse(direction.Substring(0, direction.Length - 1), out int numDirection) || numDirection < 0)
             {

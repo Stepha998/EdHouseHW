@@ -20,19 +20,20 @@ namespace EdHouseHW
         {
             // choose where to find input
             LunchPairing lunch;
-            if (System.IO.File.Exists(File))
+            if (System.IO.File.Exists(File)) // branch for input in file File
             {
                 lunch = new LunchPairing(File);
                 PrintFormattedPoint(lunch.lunchSpot);
                 return;
             }
-            if (args.Length > 0 && System.IO.File.Exists(args[0]))
+            if (args.Length > 0 && System.IO.File.Exists(args[0])) // branch for input in file specified in arg[0]
             {
                 lunch = new LunchPairing(args[0]);
                 PrintFormattedPoint(lunch.lunchSpot);
                 return;
             }
 
+            // if no input from files, expect input from stdin
             lunch = new LunchPairing();
             PrintFormattedPoint(lunch.lunchSpot);
         }
