@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace EdHouseHW
@@ -9,6 +11,11 @@ namespace EdHouseHW
     {
         private const string File = "input.txt";
 
+        private static void PrintFormattedPoint(Point point)
+        {
+            Console.WriteLine($"[{point.X},{point.Y}]");
+        }
+
         static void Main(string[] args)
         {
             // choose where to find input
@@ -16,18 +23,18 @@ namespace EdHouseHW
             if (System.IO.File.Exists(File))
             {
                 lunch = new LunchPairing(File);
-                Console.WriteLine(lunch.lunchSpot);
+                PrintFormattedPoint(lunch.lunchSpot);
                 return;
             }
             if (args.Length > 0 && System.IO.File.Exists(args[0]))
             {
                 lunch = new LunchPairing(args[0]);
-                Console.WriteLine(lunch.lunchSpot);
+                PrintFormattedPoint(lunch.lunchSpot);
                 return;
             }
 
             lunch = new LunchPairing();
-            Console.WriteLine(lunch.lunchSpot);
+            PrintFormattedPoint(lunch.lunchSpot);
         }
     }
 }
