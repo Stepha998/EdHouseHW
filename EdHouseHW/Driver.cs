@@ -82,7 +82,7 @@ namespace EdHouseHW
 
         private int ReadNumDirection(string direction)
         {
-            if (!int.TryParse(direction.Substring(0, direction.Length - 1), out int numDirection) || numDirection < 0)
+            if (direction.Length < 1 || !int.TryParse(direction.Substring(0, direction.Length - 1), out int numDirection) || numDirection < 0)
             {
                 throw new InputException("Wrong input in numeric directions.");
             }

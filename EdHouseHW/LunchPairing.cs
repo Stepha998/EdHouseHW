@@ -33,7 +33,6 @@ namespace EdHouseHW
         private void PairDrivers()
         {
             CreateDrivers();
-            ValidateLunchInterval();
             FindLunchSpot();
         }
 
@@ -45,6 +44,7 @@ namespace EdHouseHW
 
         private void FindLunchSpot()
         {
+            ValidateLunchInterval();
             int start = int.Parse(lunchInterval[0]);
             int end = int.Parse(lunchInterval[1]);
             

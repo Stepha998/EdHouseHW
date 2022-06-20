@@ -17,6 +17,7 @@ namespace EdHouseHW
             {
                 lunch = new LunchPairing(File);
                 Console.WriteLine(lunch.lunchSpot);
+                Console.ReadKey();
                 return;
             }
             if (args.Length > 0 && System.IO.File.Exists(args[0]))
