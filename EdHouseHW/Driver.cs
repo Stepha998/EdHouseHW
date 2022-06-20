@@ -9,10 +9,10 @@ namespace EdHouseHW
     {
         enum CardinalDirections
         {
-            N = 'N',
-            S = 'S',
-            E = 'E',
-            W = 'W'
+            North = 'N',
+            South = 'S',
+            East = 'E',
+            West = 'W'
         }
 
         public List<Point> Track { get; private set; } // list of all the points crossed based on the given directions
@@ -45,28 +45,28 @@ namespace EdHouseHW
             List<Point> points = new List<Point>();
             switch (cardDirection)
             {
-                case (char)CardinalDirections.N:
+                case (char)CardinalDirections.North:
                     for (int j = 1; j <= numDirection; j++)
                     {
                         points.Add(lastPoint with { Y = lastPoint.Y + j });
                     }
                     break;
 
-                case (char)CardinalDirections.S:
+                case (char)CardinalDirections.South:
                     for (int j = 1; j <= numDirection; j++)
                     {
                         points.Add(lastPoint with { Y = lastPoint.Y - j });
                     }
                     break;
 
-                case (char)CardinalDirections.E:
+                case (char)CardinalDirections.East:
                     for (int j = 1; j <= numDirection; j++)
                     {
                         points.Add(lastPoint with { X = lastPoint.X + j });
                     }
                     break;
 
-                case (char)CardinalDirections.W:
+                case (char)CardinalDirections.West:
                     for (int j = 1; j <= numDirection; j++)
                     {
                         points.Add(lastPoint with { X = lastPoint.X - j });
