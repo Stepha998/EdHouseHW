@@ -1,7 +1,8 @@
 {
   "profiles": {
     "EdHouseHW": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "input.txt"
     }
   }
 }
