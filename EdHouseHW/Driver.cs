@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EdHouseHW
 {
@@ -26,12 +24,19 @@ namespace EdHouseHW
 
         private void CreateTrack(string[] directions) // creates the track based on the given directions
         {
-            Track = new List<Point> {new Point(0, 0)};
-            foreach (var direction in directions)
+            try
             {
-                int numDirection = ReadNumDirection(direction);
-                char cardDirection = ReadCardDirection(direction);
-                Track.AddRange(LoadPointsInTheDirection(Track.Last(), numDirection, cardDirection));
+                Track = new List<Point> { new (0, 0) };
+                foreach (var direction in directions)
+                {
+                    int numDirection = ReadNumDirection(direction);
+                    char cardDirection = ReadCardDirection(direction);
+                    Track.AddRange(LoadPointsInTheDirection(Track.Last(), numDirection, cardDirection));
+                }
+            }
+            catch (Exception)
+            {
+                throw new InputException("Could not read directions correctly.");
             }
         }
 
