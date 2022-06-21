@@ -38,8 +38,13 @@ The second line is for specifying the directions of the first driver.
 The second line is for specifying the directions of the second driver.
 
 Directions consist of a numerical value: number of steps taken, and cardinal direction: direction of the steps.
+
 ## Output
 
 If successful, the program prints the location of the lunch (intersection of the driver's tracks).
 
 If not successful, the program throws an exception: in case of no location found - NoPlaceForLunchFoundException, in case of error in input - InputException.
+
+### Github
+
+Click [here](https://github.com/Stepha998/EdHouseHW) to visit a github repository of this project.
