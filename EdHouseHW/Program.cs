@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace EdHouseHW
 {
-    internal static class Program
+    public static class Program
     {
         private const string File = "input.txt";
 

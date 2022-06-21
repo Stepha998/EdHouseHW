@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdHouseHW", "EdHouseHW\EdHouseHW.csproj", "{67293F80-4E05-4378-8C94-F98A41299E55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdHouseHW", "EdHouseHW\EdHouseHW.csproj", "{67293F80-4E05-4378-8C94-F98A41299E55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunchPairingTests", "LunchPairingTests\LunchPairingTests.csproj", "{688C5E6F-E9ED-4824-82A3-369BD17B72C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{67293F80-4E05-4378-8C94-F98A41299E55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67293F80-4E05-4378-8C94-F98A41299E55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67293F80-4E05-4378-8C94-F98A41299E55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{688C5E6F-E9ED-4824-82A3-369BD17B72C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{688C5E6F-E9ED-4824-82A3-369BD17B72C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{688C5E6F-E9ED-4824-82A3-369BD17B72C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{688C5E6F-E9ED-4824-82A3-369BD17B72C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace EdHouseHW
 {
-    internal class Driver
+    public class Driver
     {
         enum CardinalDirections
         {
@@ -29,6 +29,7 @@ namespace EdHouseHW
                 Track = new List<Point> { new (0, 0) };
                 foreach (var direction in directions)
                 {
+                    CheckForWhiteSpaces(direction);
                     int numDirection = ReadNumDirection(direction);
                     char cardDirection = ReadCardDirection(direction);
                     Track.AddRange(LoadPointsInTheDirection(Track.Last(), numDirection, cardDirection));
@@ -37,6 +38,14 @@ namespace EdHouseHW
             catch (Exception)
             {
                 throw new InputException("Could not read directions correctly.");
+            }
+        }
+
+        private void CheckForWhiteSpaces(string direction)
+        {
+            if (direction.Any(char.IsWhiteSpace))
+            {
+                throw new Exception();
             }
         }
 

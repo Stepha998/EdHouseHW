@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EdHouseHW
 {
-    internal class LunchPairing
+    public class LunchPairing
     {
         private string[] lunchInterval;
         private string[] directionOne;
