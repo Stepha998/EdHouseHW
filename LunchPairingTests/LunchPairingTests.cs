@@ -1,8 +1,6 @@
-using System;
 using System.Drawing;
 using System.IO;
 using EdHouseHW;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
@@ -16,6 +14,11 @@ namespace LunchPairingTests
 
         private string GetTestFile(string file)
         {
+            if (!File.Exists(TestFilesPath + file))
+            {
+                throw new FileNotFoundException(
+                    "File not found, probably folder not in the same directory as exe file.");
+            }
             return TestFilesPath + file;
         }
 
