@@ -17,7 +17,7 @@ namespace LunchPairingTests
             if (!File.Exists(TestFilesPath + file))
             {
                 throw new FileNotFoundException(
-                    "File not found, probably folder not in the same directory as exe file.");
+                    "File not found, probably folder with the test file not in the same directory as exe file.");
             }
             return TestFilesPath + file;
         }
