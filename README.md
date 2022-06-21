@@ -3,10 +3,12 @@
 This program finds a lunch spot for drivers where their tracks intersect and when it is time for a lunch break.
 
 ## Usage
+
 ```
 ./EdHouseHW.exe
 ```
-The program looks primarily for input from file input.txt in the same folder as .exe file.
+
+The program looks primarily for input from a file `input.txt` in the same folder as .exe file.
 
 If that file is not found, a new file path can be specified in an argument at the start of the program in way such as:
 
@@ -15,7 +17,7 @@ If that file is not found, a new file path can be specified in an argument at th
 ./EdHouseHW.exe newFile.txt
 ```
 
-If the file `input.txt` is not found and no other file is specified in arguments, the program starts to expect input from standard input, such as a keyboard.
+If file input.txt is not found and no other file is specified in arguments, the program starts to expect input from standard input, such as a keyboard.
 
 ## Format of the input
 
