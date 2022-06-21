@@ -35,7 +35,7 @@ The first line is for the lunch break interval (a closed interval).
 
 The second line is for specifying the directions of the first driver.
 
-The second line is for specifying the directions of the second driver.
+The third line is for specifying the directions of the second driver.
 
 Directions consist of a numerical value: number of steps taken, and cardinal direction: direction of the steps.
 
