@@ -45,6 +45,6 @@ If successful, the program prints the location of the lunch (intersection of the
 
 If not successful, the program throws an exception: in case of no location found - NoPlaceForLunchFoundException, in case of error in input - InputException.
 
-### Github
+## Github
 
 Click [here](https://github.com/Stepha998/EdHouseHW) to visit a github repository of this project.
