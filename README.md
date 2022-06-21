@@ -15,7 +15,7 @@ If that file is not found, a new file path can be specified in an argument at th
 ./EdHouseHW.exe newFile.txt
 ```
 
-If file input.txt is not found and no other file is specified in arguments, the program starts to expect input from standard input, such as a keyboard.
+If the file `input.txt` is not found and no other file is specified in arguments, the program starts to expect input from standard input, such as a keyboard.
 
 ## Format of the input
 
