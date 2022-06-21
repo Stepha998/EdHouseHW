@@ -1,0 +1,15 @@
+C:\Users\stefa\source\repos\EdHouseHW\EdHouseHW\bin\Release\net6.0\EdHouseHW.exe
+C:\Users\stefa\source\repos\EdHouseHW\EdHouseHW\bin\Release\net6.0\EdHouseHW.deps.json
+C:\Users\stefa\source\repos\EdHouseHW\EdHouseHW\bin\Release\net6.0\EdHouseHW.runtimeconfig.json
+C:\Users\stefa\source\repos\EdHouseHW\EdHouseHW\bin\Release\net6.0\EdHouseHW.dll
+C:\Users\stefa\source\repos\EdHouseHW\EdHouseHW\bin\Release\net6.0\EdHouseHW.pdb
+C:\Users\stefa\source\repos\EdHouseHW\EdHouseHW\obj\Release\net6.0\EdHouseHW.csproj.AssemblyReference.cache
+C:\Users\stefa\source\repos\EdHouseHW\EdHouseHW\obj\Release\net6.0\EdHouseHW.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\stefa\source\repos\EdHouseHW\EdHouseHW\obj\Release\net6.0\EdHouseHW.AssemblyInfoInputs.cache
+C:\Users\stefa\source\repos\EdHouseHW\EdHouseHW\obj\Release\net6.0\EdHouseHW.AssemblyInfo.cs
+C:\Users\stefa\source\repos\EdHouseHW\EdHouseHW\obj\Release\net6.0\EdHouseHW.csproj.CoreCompileInputs.cache
+C:\Users\stefa\source\repos\EdHouseHW\EdHouseHW\obj\Release\net6.0\EdHouseHW.dll
+C:\Users\stefa\source\repos\EdHouseHW\EdHouseHW\obj\Release\net6.0\refint\EdHouseHW.dll
+C:\Users\stefa\source\repos\EdHouseHW\EdHouseHW\obj\Release\net6.0\EdHouseHW.pdb
+C:\Users\stefa\source\repos\EdHouseHW\EdHouseHW\obj\Release\net6.0\EdHouseHW.genruntimeconfig.cache
+C:\Users\stefa\source\repos\EdHouseHW\EdHouseHW\obj\Release\net6.0\ref\EdHouseHW.dll
